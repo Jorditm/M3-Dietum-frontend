@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-class Dietist {
+class Dietitian {
   constructor() {
-    this.dietist = axios.create({
+    this.dietitian = axios.create({
       baseURL: process.env.REACT_APP_API_URI,
       withCredentials: true,
     });
   }
 
   getInfoPatients() {
-    return this.dietist.get('/dietist/allPatients').then(({ data }) => data);
+    return this.dietitian.get('/dietitian/allPatients').then(({ data }) => data);
   }
 
   createPatient({
@@ -26,8 +26,8 @@ class Dietist {
     foodAllergies,
     smoke,
   }) {
-    return this.dietist
-      .post('/dietist/createUser', {
+    return this.dietitian
+      .post('/dietitian/createPatient', {
         name,
         lastName,
         email,
@@ -45,18 +45,23 @@ class Dietist {
   }
 
   add(id) {
-    return this.dietist.post(`/dietist/add/${id}`, {}).then(({ data }) => data);
+    return this.dietitian.post(`/dietitian/add/${id}`, {}).then(({ data }) => data);
   }
 
   patientProfile(id) {
-    return this.dietist.get(`/dietist/profile/${id}`).then(({ data }) => data);
+    return this.dietitian.get(`/dietitian/profile/${id}`).then(({ data }) => data);
   }
 
   deletePatient(id) {
-    return this.dietist.post(`/dietist/delete/${id}`, {}).then(({ data }) => data);
+    return this.dietitian.post(`/dietitian/delete/${id}`, {}).then(({ data }) => data);
+  }
+  editInfodietitian({ id, name, lastName, proName, password }) {
+    return this.dietitian
+      .put(`/dietitian/edit/${id}`, { name, lastName, proName, password })
+      .then(({ data }) => data);
   }
 }
 
-const axiosRequestFunctions = new Dietist();
+const axiosRequestFunctions = new Dietitian();
 
 export default axiosRequestFunctions;

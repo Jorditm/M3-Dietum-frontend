@@ -5,7 +5,7 @@ import { Button, Modal } from 'react-bootstrap';
 
 import { withAuth } from '../lib/AuthProvider';
 
-import dietistService from '../lib/dietist-service';
+import dietitianService from '../lib/dietitian-service';
 
 const PatientProfile = (props) => {
   const [patientCard, setPatientCard] = useState({});
@@ -18,7 +18,7 @@ const PatientProfile = (props) => {
 
   const getInfo = useCallback(async () => {
     try {
-      const patient = await dietistService.patientProfile(props.match.params.id);
+      const patient = await dietitianService.patientProfile(props.match.params.id);
       setPatientCard(patient);
       console.log(patient);
     } catch (error) {
@@ -28,7 +28,7 @@ const PatientProfile = (props) => {
 
   const deletePatient = async () => {
     try {
-      const findPatient = await dietistService.deletePatient(patientCard._id);
+      const findPatient = await dietitianService.deletePatient(patientCard._id);
       console.log(findPatient);
       setDietitian(findPatient);
       setShow(false);

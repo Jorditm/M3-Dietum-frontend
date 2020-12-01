@@ -3,34 +3,46 @@
   padding: 0;
 }
 
-.App {
-  padding: 20px;
+.wrapper {
+  display: block;
 }
 
-nav.navbar {
-  display: flex;
-  padding: 20px;
-  background: #686de0;
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* top layer */
+  z-index: 9999;
 }
 
-nav.navbar .navbar-user {
-  margin-left: 10px;
-  color: white;
+.overlay {
+  display: none;
+  position: fixed;
+  /* full screen */
+  width: 100vw;
+  height: 100vh;
+  /* transparent black */
+  background: rgba(0, 0, 0, 0.7);
+  /* middle layer, i.e. appears below the sidebar */
+  z-index: 998;
+  opacity: 0;
+  /* animate the transition */
+  transition: all 0.5s ease-in-out;
+}
+/* display .overlay when it has the .active class */
+.overlay.active {
+  display: block;
+  opacity: 1;
 }
 
-button.navbar-button {
-  padding: 5px 20px;
-  width: 100px;
-  border-radius: 3px;
-  margin: 0 10px;
-}
-
-#home-btn {
-  color: white;
-  text-decoration: none;
-}
-
-.navbtn {
-  color: white;
-  text-decoration: none;
+#dismiss {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  /* top right corner of the sidebar */
+  top: 10px;
+  right: 10px;
 }

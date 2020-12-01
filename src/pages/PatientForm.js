@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import dietistService from '../lib/dietist-service';
+import dietititanService from '../lib/dietitian-service';
 
 import { withAuth } from '../lib/AuthProvider';
 
@@ -74,10 +74,10 @@ const PatientForm = ({ createPatient, add, user, history }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const newUser = await dietistService.createPatient(patient);
-      const doctorUpdate = await dietistService.add(newUser._id);
-      setDietitian(doctorUpdate);
-      redirToProfile(newUser._id);
+      const newPatient = await dietititanService.createPatient(patient);
+      const dietitianUpdate = await dietititanService.add(newPatient._id);
+      setDietitian(dietitianUpdate);
+      redirToProfile(newPatient._id);
     } catch (err) {
       console.log(err);
     }
@@ -112,8 +112,8 @@ const PatientForm = ({ createPatient, add, user, history }) => {
     //   !foodAllergies ||
     //   !smoke
   };
-  const redirToProfile = (userId) => {
-    history.push(`/PatientProfile/${userId}`);
+  const redirToProfile = (patientId) => {
+    history.push(`/PatientProfile/${patientId}`);
   };
 
   //INTRODUCIR FOTO DE PERFIL DEL PACIENTE
@@ -124,7 +124,7 @@ const PatientForm = ({ createPatient, add, user, history }) => {
   //   const uploadData = new FormData();
   //   uploadData.append("photo", file);
   //   axios
-  //     .post(`${process.env.REACT_APP_API_URI}/dietist/upload/`, uploadData, {
+  //     .post(`${process.env.REACT_APP_API_URI}/dietitian/upload/`, uploadData, {
   //       withCredentials: true,
   //     })
   //     .then((response) => {

@@ -3,16 +3,15 @@ import { Link } from 'react-router-dom';
 
 import { withAuth } from '../lib/AuthProvider';
 
-import dietistService from '../lib/dietist-service';
+import dietitianService from '../lib/dietitian-service';
 
-const Principal = ({ getInfoPatients }) => {
+const Principal = ({ getInfoPatients, user }) => {
   const [viewPatients, setViewPatients] = useState([]);
 
   const getPatients = useCallback(async () => {
     try {
-      const allPatients = await dietistService.getInfoPatients();
-      console.log(allPatients.users);
-      setViewPatients(allPatients.users);
+      const allPatients = await dietitianService.getInfoPatients();
+      //setViewPatients(allPatients.patients);
     } catch (err) {
       console.log('ERROR EN PAGINA PRINCIPAL', err);
     }
@@ -37,9 +36,16 @@ const Principal = ({ getInfoPatients }) => {
   }, [getPatients]);
 
   return (
-    <div>
+    <div className="row w-100">
+      <Link to={`/EditDietitian/${user._id}`}>Edit User</Link>
       <h1>PÁGINA PRINCIPAL</h1>
-      <div>{renderPatients()}</div>
+      {viewPatients.length !== 0 ? (
+        <div>{renderPatients()}</div>
+      ) : (
+        <div>
+          <h3>no hay clientes registrados aun </h3>
+        </div>
+      )}
       <Link to={'/PatientForm'}>Registrer Patient</Link>
     </div>
   );
