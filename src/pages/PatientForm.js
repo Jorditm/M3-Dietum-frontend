@@ -136,7 +136,7 @@ const PatientForm = ({ createPatient, add, user, history }) => {
   // };
 
   return (
-    <div>
+    <div className="container">
       <h1>Registrer a Patient</h1>
 
       <form onSubmit={handleFormSubmit}>

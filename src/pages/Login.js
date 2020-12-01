@@ -25,17 +25,30 @@ class Login extends Component {
     const { showError } = this.props;
 
     return (
-      <div>
+      <div className="container">
         <h1>Login</h1>
 
         <form onSubmit={this.handleFormSubmit}>
-          <label>email:</label>
-          <input type="email" name="email" value={email} onChange={this.handleChange} />
+          <div className="form-group">
+            <label>email:</label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+              className="form-control"
+            />
 
-          <label>Password:</label>
-          <input type="password" name="password" value={password} onChange={this.handleChange} />
-
-          <input type="submit" value="Login" />
+            <label>Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+              className="form-control"
+            />
+          </div>
+          <input type="submit" value="Login" className="btn btn-primary btn-lg btn-block" />
         </form>
 
         {!showError && (
@@ -45,7 +58,9 @@ class Login extends Component {
         )}
 
         <p>Already have account?</p>
-        <Link to={'/signup'}>Go to Sign up</Link>
+        <Link to={'/signup'} className="btn btn-secondary btn-sm">
+          Go to Sign up
+        </Link>
       </div>
     );
   }

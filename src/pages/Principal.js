@@ -36,8 +36,7 @@ const Principal = ({ getInfoPatients, user }) => {
   }, [getPatients]);
 
   return (
-    <div className="row w-100">
-      <Link to={`/EditDietitian/${user._id}`}>Edit User</Link>
+    <div className="home-container">
       <h1>PÁGINA PRINCIPAL</h1>
       {viewPatients.length !== 0 ? (
         <div>{renderPatients()}</div>
@@ -46,7 +45,6 @@ const Principal = ({ getInfoPatients, user }) => {
           <h3>no hay clientes registrados aun </h3>
         </div>
       )}
-      <Link to={'/PatientForm'}>Registrer Patient</Link>
     </div>
   );
 };

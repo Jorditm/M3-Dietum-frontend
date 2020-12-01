@@ -5,82 +5,67 @@ import { withAuth } from '../lib/AuthProvider';
 class Navbar extends Component {
   render() {
     const { user, logout, isLoggedin } = this.props;
+
     return (
-      <div class="wrapper">
-        <nav id="sidebar">
-          <div id="dismiss">
-            <i class="fas fa-arrow-left"></i>
-          </div>
-
-          <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
-          </div>
-
-          <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
-            <li class="active">
-              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                Home
-              </a>
-            </li>
-            {isLoggedin ? (
-              <>
-                {/* <p>Welcome Dr. {user.name}</p> */}
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-                  Pages
-                </a>
-                <li>
-                  <Link className="navBtns" to={'/'}>
-                    <a>Home</a>
-                  </Link>
+      <div>
+        {isLoggedin ? (
+          <nav className="navbar navbar-expand-lg navbar-color">
+            <a className="navbar-brand" href="#">
+              Navbar FLAMA
+            </a>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarText"
+              aria-controls="navbarText"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarText">
+              <ul className="navbar-nav mr-auto">
+                {/* <li className="nav-item active">
+                  <a className="nav-link" href="#">
+                    Home <span className="sr-only">(current)</span>
+                  </a>
                 </li>
-                <li>
-                  <Link className="navBtns" to="/PatientForm">
-                    Registrar paciente
-                  </Link>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Features
+                  </a>
                 </li>
-                <li>
-                  <button className="navBtns" onClick={logout}>
-                    Logout
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Pricing
+                  </a>
+                </li> */}
+              </ul>
+              <span className="navbar-text">
+                <div className="btn-group">
+                  <button
+                    type="button"
+                    className="btn btn-custom dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {user.name} {user.lastName}
                   </button>
-                </li>
-
-                {/* <Link className="navBtns" to="/patientForm">Registrar Paciente</Link> */}
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link className="navBtns" to={'/'}>
-                    <h4>Home</h4>
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="navBtns" to="/login">
-                    Login
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="navBtns" to="/signup">
-                    Sign Up
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-        <div id="content">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
-                <span>Toggle Sidebar</span>
-              </button>
+                  <div className="dropdown-menu dropdown-menu-right">
+                    <Link to={`/EditDietitian/${user._id}`}>
+                      <button className="dropdown-item">Edit User</button>
+                    </Link>
+                    <button className="dropdown-item" onClick={logout}>
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </span>
             </div>
           </nav>
-        </div>
-        <div class="overlay"></div>
+        ) : null}
       </div>
     );
   }

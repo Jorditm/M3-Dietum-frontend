@@ -26,7 +26,7 @@ const EditDietitian = ({ editInfoDietitian, user }) => {
 
   console.log(infoDietitian);
   return (
-    <div>
+    <div className="container">
       <h1>Pagina de edicion del usuario</h1>
       <form onSubmit={handleSubmitEdit}>
         <div className="form-group">

@@ -3,7 +3,6 @@ import './App.css';
 import { Switch } from 'react-router-dom';
 import AuthProvider from './lib/AuthProvider';
 
-import Navbar from './components/Navbar';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Private from './pages/Private';
@@ -13,13 +12,16 @@ import Principal from './pages/Principal';
 import PatientForm from './pages/PatientForm';
 import PatientProfile from './pages/PatientProfile';
 import EditDietitian from './pages/EditDietitian';
+import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar';
 
 class App extends Component {
   render() {
     return (
       <AuthProvider>
-        <div className="main-container">
+        <div>
           <Navbar />
+          <Sidebar />
 
           <Switch>
             <AnonRoute exact path="/signup" component={Signup} />
