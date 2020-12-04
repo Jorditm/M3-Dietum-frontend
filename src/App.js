@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Private from './pages/Private';
 import AnonRoute from './components/AnonRoute';
 import PrivateRoute from './components/PrivateRoute';
-import Principal from './pages/Principal';
+import Home from './pages/Home';
 import PatientForm from './pages/PatientForm';
 import PatientProfile from './pages/PatientProfile';
 import EditDietitian from './pages/EditDietitian';
@@ -27,7 +27,7 @@ class App extends Component {
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/private" component={Private} />
-            <PrivateRoute exact path="/" component={Principal} />
+            <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/PatientForm" component={PatientForm} />
             {/* <PrivateRoute exact component={PatientProfile} /> */}
             <PrivateRoute exact path="/PatientProfile/:id" component={PatientProfile} />

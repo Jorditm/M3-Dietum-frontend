@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import dietitianService from '../lib/dietitian-service';
 import { withAuth } from '../lib/AuthProvider';
 
-const EditDietitian = ({ editInfoDietitian, user }) => {
+const EditDietitian = ({ user, history }) => {
   const [infoDietitian, setInfoDietitian] = useState(user);
 
-  const [edit, setEdit] = useState(false);
+  const [mensaje, setMensaje] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -18,13 +18,16 @@ const EditDietitian = ({ editInfoDietitian, user }) => {
     try {
       const newDataDietitian = await dietitianService.editInfoDietitian(infoDietitian);
       setInfoDietitian(newDataDietitian);
+      setMensaje(true);
+      setTimeout(() => setMensaje(false), 2000);
+      // history.push('/');
       console.log(newDataDietitian);
     } catch (error) {
       console.log('error', error);
     }
   };
 
-  console.log(infoDietitian);
+  //   console.log(infoDietitian);
   return (
     <div className="container">
       <h1>Pagina de edicion del usuario</h1>
@@ -62,17 +65,21 @@ const EditDietitian = ({ editInfoDietitian, user }) => {
           />
         </div>
 
-        <div className="form-group">
-          <label>Current password:</label>
+        {/* <div className="form-group">
+          <label>new password:</label>
           <input
             type="password"
             name="password"
             className="form-control"
+            placeholder="new password"
             value={infoDietitian.password}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
+        {mensaje ? (
+          <div className="p-3 mb-2 bg-success text-white">Cambios guardados correctamente</div>
+        ) : null}
         <div>
           <input
             type="submit"

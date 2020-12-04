@@ -1,11 +1,52 @@
-import React from "react";
+import React, { useEffect, useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function Home() {
+import { withAuth } from '../lib/AuthProvider';
+
+import dietitianService from '../lib/dietitian-service';
+
+const Home = () => {
+  const [viewPatients, setViewPatients] = useState([]);
+
+  const getPatients = useCallback(async () => {
+    try {
+      const allPatients = await dietitianService.getInfoPatients();
+      setViewPatients(allPatients.patients);
+    } catch (err) {
+      console.log('ERROR EN PAGINA Home', err);
+    }
+  }, []);
+
+  const renderPatients = () => {
+    return viewPatients.map((patient) => {
+      return (
+        <div key={patient._id}>
+          <Link to={`/PatientProfile/${patient._id}`}>
+            <div>
+              {patient.name} {patient.lastName}
+            </div>
+          </Link>
+        </div>
+      );
+    });
+  };
+
+  useEffect(() => {
+    getPatients();
+  }, [getPatients]);
+
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className="home-container">
+      <h1>PÁGINA Home</h1>
+      {viewPatients.length !== 0 ? (
+        <div>{renderPatients()}</div>
+      ) : (
+        <div>
+          <h3>no hay clientes registrados aun </h3>
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default Home;
+export default withAuth(Home);

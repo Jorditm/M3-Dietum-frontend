@@ -31,7 +31,7 @@ const withAuth = (WrappedComponent) => {
 
 // Provider
 class AuthProvider extends React.Component {
-  state = { isLoggedin: false, user: null, isLoading: true, showError: '' };
+  state = { isLoggedin: false, user: null, isLoading: true, showError: false };
 
   componentDidMount() {
     // luego de que se monte el componente, llama a auth.me() que nos devuelve el usuario y setea los valores para loguearlo
@@ -50,7 +50,7 @@ class AuthProvider extends React.Component {
           isLoggedin: false,
           user: null,
           isLoading: false,
-          showError: 'Error al inciar ',
+          showError: true,
         })
       );
   }

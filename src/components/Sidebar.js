@@ -5,15 +5,12 @@ import { withAuth } from '../lib/AuthProvider';
 
 class Sidebar extends Component {
   render() {
-    const { user, logout, isLoggedin } = this.props;
+    const { isLoggedin } = this.props;
     return (
       <div>
         {isLoggedin ? (
           <>
             <div className="sidenav">
-              <div className="logo">
-                <h1>LOGO</h1>
-              </div>
               <Link className="navBtns" to={'/'}>
                 <h4>Home</h4>
               </Link>

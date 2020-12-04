@@ -19,7 +19,7 @@ const Error = styled.div`
 //   width: 100px;
 // `;
 
-const PatientForm = ({ createPatient, add, user, history }) => {
+const PatientForm = ({ user, history }) => {
   const [patient, setPatient] = useState({
     // imageUrl: '',
     name: '',

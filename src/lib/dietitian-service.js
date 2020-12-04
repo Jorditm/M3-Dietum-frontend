@@ -55,9 +55,10 @@ class Dietitian {
   deletePatient(id) {
     return this.dietitian.post(`/dietitian/delete/${id}`, {}).then(({ data }) => data);
   }
-  editInfodietitian({ id, name, lastName, proName, password }) {
+
+  editInfoDietitian({ id, name, lastName, proName }) {
     return this.dietitian
-      .put(`/dietitian/edit/${id}`, { name, lastName, proName, password })
+      .put(`/dietitian/edit/${id}`, { name, lastName, proName })
       .then(({ data }) => data);
   }
 }

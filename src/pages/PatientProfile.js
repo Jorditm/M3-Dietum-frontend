@@ -44,7 +44,7 @@ const PatientProfile = (props) => {
   }, [getInfo]);
 
   return (
-    <div>
+    <div className="patient-container">
       <h1>PATIENT PROFILE</h1>
       <h5>nombre: {patientCard.name}</h5>
       <h5>Apellido: {patientCard.lastName}</h5>
