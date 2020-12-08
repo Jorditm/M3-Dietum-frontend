@@ -13,6 +13,7 @@ class Dietitian {
   }
 
   createPatient({
+    imageUrl,
     name,
     lastName,
     email,
@@ -28,6 +29,7 @@ class Dietitian {
   }) {
     return this.dietitian
       .post('/dietitian/createPatient', {
+        imageUrl,
         name,
         lastName,
         email,
@@ -59,6 +61,42 @@ class Dietitian {
   editInfoDietitian({ id, name, lastName, proName }) {
     return this.dietitian
       .put(`/dietitian/edit/${id}`, { name, lastName, proName })
+      .then(({ data }) => data);
+  }
+
+  editInfoPatient({
+    _id,
+    imageUrl,
+
+    name,
+    lastName,
+    email,
+    gender,
+    age,
+    weight,
+    height,
+    hipPerimeter,
+    neckPerimeter,
+    objectives,
+    foodAllergies,
+    smoke,
+  }) {
+    return this.dietitian
+      .put(`/dietitian/editPatient/${_id}`, {
+        imageUrl,
+        name,
+        lastName,
+        email,
+        gender,
+        age,
+        weight,
+        height,
+        hipPerimeter,
+        neckPerimeter,
+        objectives,
+        foodAllergies,
+        smoke,
+      })
       .then(({ data }) => data);
   }
 }

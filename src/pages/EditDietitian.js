@@ -19,9 +19,11 @@ const EditDietitian = ({ user, history }) => {
       const newDataDietitian = await dietitianService.editInfoDietitian(infoDietitian);
       setInfoDietitian(newDataDietitian);
       setMensaje(true);
+      user.name = 'Michel';
       setTimeout(() => setMensaje(false), 2000);
       // history.push('/');
-      console.log(newDataDietitian);
+      console.log('state edit', infoDietitian);
+      console.log('user', user);
     } catch (error) {
       console.log('error', error);
     }

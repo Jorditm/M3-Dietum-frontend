@@ -2,13 +2,15 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
 
+import userImg from '../img/usuario.png';
+
 import authService from '../lib/auth-service';
 
 const Navbar = ({ user, logout, isLoggedin }) => {
-  const [updateUser, setUpdateUser] = useState(user);
-
+  const [dietitian, setDietitian] = useState(user);
   return (
-    <div>
+    <div className="navbar-container">
+      {console.log('STATE', dietitian)}
       {isLoggedin ? (
         <nav className="navbar navbar-expand-lg navbar-color">
           <div className="logo">
@@ -52,7 +54,7 @@ const Navbar = ({ user, logout, isLoggedin }) => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  {updateUser.name} {updateUser.lastName}
+                  <img className="userImg" src={userImg} alt="user img" />
                 </button>
                 <div className="dropdown-menu dropdown-menu-right">
                   <Link to={`/EditDietitian/${user._id}`}>

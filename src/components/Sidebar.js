@@ -7,7 +7,7 @@ class Sidebar extends Component {
   render() {
     const { isLoggedin } = this.props;
     return (
-      <div>
+      <div className="sidebar">
         {isLoggedin ? (
           <>
             <div className="sidenav">

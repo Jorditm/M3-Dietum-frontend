@@ -1,45 +1,22 @@
 /* eslint-disable no-use-before-define */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import dietitianService from '../lib/dietitian-service';
-// import cloudinaryService from '../lib/cloudinary-service';
-import defaultImg from '../img/default-imguser.png';
 import axios from 'axios';
 
 import { withAuth } from '../lib/AuthProvider';
 
-const Error = styled.div`
-  background-color: red;
-  color: white;
-  padding: 1rem;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 2rem;
-`;
-
 const ImgUser = styled.img`
-  width: 200px;
+  width: 100px;
+  margin-bottom: 5px;
+  margin-left: 75px;
 `;
 
-const PatientForm = ({ user, history }) => {
-  const [patient, setPatient] = useState({
-    imageUrl: defaultImg,
-    name: '',
-    lastName: '',
-    email: '',
-    gender: '',
-    age: 0,
-    weight: 0,
-    height: 0,
-    hipPerimeter: 0,
-    neckPerimeter: 0,
-    objectives: '',
-    foodAllergies: '',
-    smoke: '',
-  });
-  const [error, setError] = useState(false);
-  const [dietitian, setDietitian] = useState(user);
+const EditPatient = (props) => {
+  const [patient, setPatient] = useState({});
+
+  const [mensaje, setMensaje] = useState(false);
 
   const {
     imageUrl,
@@ -65,7 +42,6 @@ const PatientForm = ({ user, history }) => {
   const handleGenderChange = (event) => {
     const { value } = event.target;
     // console.log(dietitian);
-
     setPatient({ ...patient, gender: value });
   };
 
@@ -74,7 +50,7 @@ const PatientForm = ({ user, history }) => {
     setPatient({ ...patient, smoke: value });
   };
 
-  const fileOnchange = (event) => {
+  const handleFileOnchange = (event) => {
     //Consigue el archivo del form
     const file = event.target.files[0];
     //para enviar el objeto y añadir la imagen
@@ -90,75 +66,39 @@ const PatientForm = ({ user, history }) => {
       .catch((error) => console.log(error));
   };
 
+  const getInfoPatient = useCallback(async () => {
+    try {
+      const patient = await dietitianService.patientProfile(props.match.params.id);
+      setPatient(patient);
+      console.log(patient);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const newPatient = await dietitianService.createPatient(patient);
-      const dietitianUpdate = await dietitianService.add(newPatient._id);
-      setDietitian(dietitianUpdate);
-      redirToProfile(newPatient._id);
-    } catch (err) {
-      console.log(err);
+      const newDataPatient = await dietitianService.editInfoPatient(patient);
+      setPatient(newDataPatient);
+
+      setMensaje(true);
+      setTimeout(() => setMensaje(false), 2000);
+
+      //   console.log(newDataPatient);
+    } catch (error) {
+      console.log('ERROR editPatient', error);
     }
-    setPatient({
-      imageUrl: '',
-      name: '',
-      lastName: '',
-      email: '',
-      gender: '',
-      age: 0,
-      weight: 0,
-      height: 0,
-      hipPerimeter: 0,
-      neckPerimeter: 0,
-      objectives: '',
-      foodAllergies: '',
-      smoke: '',
-    });
-
-    // if (
-    //   // imageUrl.trim() === null ||
-    //   !name ||
-    //   !lastName ||
-    //   !email ||
-    //   !gender ||
-    //   !age ||
-    //   !weight ||
-    //   !height ||
-    //   !hipPerimeter ||
-    //   !neckPerimeter ||
-    //   !objectives ||
-    //   !foodAllergies ||
-    //   !smoke
-  };
-  const redirToProfile = (patientId) => {
-    history.push(`/PatientProfile/${patientId}`);
   };
 
-  //INTRODUCIR FOTO DE PERFIL DEL PACIENTE
-  // const fileOnchange = async (event) => {
-  //   //Consigue el archivo del form
-  //   const file = event.target.files[0];
-  //   //para enviar el objeto y añadir la imagen
-  //   const uploadData = new FormData();
-  //   uploadData.append('photo', file);
-  //   try {
-  //     const sendFile = await cloudinaryService.fileUpload(uploadData);
-  //     setPatient({ ...patient, imageUrl: sendFile });
-  //     console.log(patient);
-  //   } catch (error) {
-  //     console.log('error', error);
-  //   }
-  // };
+  useEffect(() => {
+    getInfoPatient();
+  }, [getInfoPatient]);
 
   return (
     <div className="container">
-      <h1>Registrer a Patient</h1>
-
+      <h1>EDIT a Patient</h1>
       <form onSubmit={handleFormSubmit}>
-        {error && <Error>Todos los cambios son obligatorios</Error>}
-
-        {/* <label>profile image</label> */}
         <ImgUser src={imageUrl} alt="patient Img" />
 
         <div className="input-group mb-3">
@@ -167,7 +107,7 @@ const PatientForm = ({ user, history }) => {
           </div>
           <div className="custom-file">
             <input
-              onChange={fileOnchange}
+              onChange={handleFileOnchange}
               type="file"
               className="custom-file-input"
               id="inputGroupFile01"
@@ -210,7 +150,6 @@ const PatientForm = ({ user, history }) => {
               name="name"
               value={name}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="col">
@@ -234,7 +173,6 @@ const PatientForm = ({ user, history }) => {
             value={email}
             onChange={handleChange}
             placeholder="exemple@email.com"
-            required
             className="form-control"
           />
         </div>
@@ -342,6 +280,9 @@ const PatientForm = ({ user, history }) => {
             className="form-control"
           />
         </div>
+        {mensaje ? (
+          <div className="p-3 mb-2 bg-success text-white">Cambios guardados correctamente</div>
+        ) : null}
 
         <input
           className="btn btn-primary btn-lg btn-block"
@@ -358,4 +299,4 @@ const PatientForm = ({ user, history }) => {
   );
 };
 
-export default withAuth(PatientForm);
+export default withAuth(EditPatient);

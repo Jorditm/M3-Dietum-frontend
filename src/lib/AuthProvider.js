@@ -33,8 +33,7 @@ const withAuth = (WrappedComponent) => {
 class AuthProvider extends React.Component {
   state = { isLoggedin: false, user: null, isLoading: true, showError: false };
 
-  componentDidMount() {
-    // luego de que se monte el componente, llama a auth.me() que nos devuelve el usuario y setea los valores para loguearlo
+  getInfoDietitian = () => {
     auth
       .me()
       .then((user) =>
@@ -53,6 +52,11 @@ class AuthProvider extends React.Component {
           showError: true,
         })
       );
+  };
+
+  componentDidMount() {
+    // luego de que se monte el componente, llama a auth.me() que nos devuelve el usuario y setea los valores para loguearlo
+    this.getInfoDietitian();
   }
 
   signup = (user) => {

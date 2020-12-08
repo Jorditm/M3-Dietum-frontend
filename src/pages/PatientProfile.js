@@ -45,47 +45,66 @@ const PatientProfile = (props) => {
 
   return (
     <div className="patient-container">
-      <h1>PATIENT PROFILE</h1>
-      <h5>nombre: {patientCard.name}</h5>
-      <h5>Apellido: {patientCard.lastName}</h5>
-      <p>mail: {patientCard.email}</p>
-      <h2>Medidas</h2>
-      <p>Edad: {patientCard.age}</p>
-      <p>Peso: {patientCard.weight}</p>
-      <p>Altura: {patientCard.height}</p>
-      <p>{patientCard.hipPerimeter}</p>
-      <p>{patientCard.neckPerimeter}</p>
-      <h2>Informacion Adicional</h2>
-      <p>Alergias nutricionales: {patientCard.foodAllergies}</p>
-      <p>Fumador? {patientCard.smoke}</p>
-      <h2>Objetivo</h2>
-      <p>{patientCard.objectives}</p>
-      <p></p>
-      <p></p>
-      <div>
-        <Button className="btn btn-danger" variant="primary" onClick={handleShow}>
-          Eliminar paciente
-        </Button>
-
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title> Eliminar paciente</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Haciendo click en "Eliminar" se borrará el paciente</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Cerrar
-            </Button>
-            <Button variant="primary" onClick={deletePatient}>
-              Eliminar
-            </Button>
-          </Modal.Footer>
-        </Modal>
+      <div className="patient-container-one">
+        <img className="profile-patient-img" src={patientCard.imageUrl} alt="user-img" />
       </div>
-      <div>
-        <Link className="btn btn-dark" to={'/'}>
-          Home
-        </Link>
+      <div className="patient-container-two">
+        <h5>{patientCard.name}</h5>
+        <h5>{patientCard.lastName}</h5>
+        <p>{patientCard.email}</p>
+      </div>
+      <div className="patient-container-three">
+        <h2>Medidas</h2>
+        <p>Edad: {patientCard.age}</p>
+        <p>Peso: {patientCard.weight}</p>
+        <p>Altura: {patientCard.height}</p>
+        <p>{patientCard.hipPerimeter}</p>
+        <p>{patientCard.neckPerimeter}</p>
+      </div>
+      <div className="patient-container-four">
+        <h2>Informacion Adicional</h2>
+        <p>Alergias nutricionales: {patientCard.foodAllergies}</p>
+        <p>Fumador? {patientCard.smoke}</p>
+      </div>
+      <div className="patient-container-five">
+        <h2>Objetivo</h2>
+        <p>{patientCard.objectives}</p>
+      </div>
+      <div className="patient-container-six">
+        <div>
+          <Button className="btn btn-danger" variant="primary" onClick={handleShow}>
+            Eliminar paciente
+          </Button>
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title> Eliminar paciente</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Haciendo click en "Eliminar" se borrará el paciente</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Cerrar
+              </Button>
+              <Button variant="primary" onClick={deletePatient}>
+                Eliminar
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+        <div>
+          <Link
+            to={`/EditPatient/${patientCard._id}`}
+            className="btn btn-success"
+            variant="primary"
+          >
+            Editar paciente
+          </Link>
+        </div>
+        {/* <div>
+          <Link className="btn btn-dark" to={'/'}>
+            Home
+          </Link>
+        </div> */}
       </div>
     </div>
   );

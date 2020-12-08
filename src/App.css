@@ -7,15 +7,118 @@
   padding: 20px;
 }
 
-/* Sisebar */
+/* HOME */
 
 .home-container {
   margin-left: 230px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
 }
 
-.patient-container {
-  margin-left: 230px;
+.container-one {
+  margin-top: 30px;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 30px;
+  background-color: rgba(139, 139, 139, 0.5);
+  padding: 1em;
+  grid-column: 1/ 3;
+  grid-row: 1/3;
+  display: flex;
+  flex-wrap: wrap;
 }
+
+.patient-card {
+  width: 200px;
+  text-align: center;
+  margin: 23px;
+  border-radius: 25%;
+  cursor: pointer;
+}
+
+.patient-card:hover {
+  background-color: white;
+  transition: 500ms;
+  text-decoration: none;
+}
+.patient-text {
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.patient-img {
+  width: 150px;
+}
+
+.profile-patient-img {
+  width: 250px;
+}
+
+/* FINAL HOME */
+
+/* PATIENT PROFILE */
+
+.patient-container {
+  margin-top: 50px;
+  margin-left: 250px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.patient-container-one {
+  grid-column: 1;
+  grid-row: 1/3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.patient-container-two {
+  grid-column: 1;
+  grid-row: 3;
+  padding-top: 15px;
+  padding-left: 30px;
+  border-radius: 20px;
+  background-color: rgba(139, 139, 139, 0.5);
+}
+.patient-container-three {
+  grid-column: 2/4;
+  grid-row: 1;
+  padding-left: 20px;
+  border-radius: 20px;
+  background-color: rgba(139, 139, 139, 0.5);
+}
+.patient-container-four {
+  grid-column: 2/4;
+  grid-row: 2;
+  padding-left: 20px;
+  border-radius: 20px;
+  background-color: rgba(139, 139, 139, 0.5);
+}
+.patient-container-five {
+  grid-column: 2/4;
+  grid-row: 3;
+  padding-left: 20px;
+  border-radius: 20px;
+  background-color: rgba(139, 139, 139, 0.5);
+}
+
+.patient-container-six {
+  grid-column: 1;
+  grid-row: 4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* FINAL PATIENT PROFILE */
+
+/* SIDENAV */
 
 .userName {
   float: right;
@@ -60,7 +163,9 @@
   padding: 0px 10px;
 }
 
-/* Navbar */
+/* FINAL SIDENAV */
+
+/* NAVBAR */
 
 .navbar {
   z-index: 2;
@@ -72,6 +177,10 @@
 
 .btn-custom:hover {
   color: #00a055;
+}
+
+.userImg {
+  width: 35px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and .navBtns smaller font size) */

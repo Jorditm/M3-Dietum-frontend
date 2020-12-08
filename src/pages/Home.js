@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { withAuth } from '../lib/AuthProvider';
 
@@ -20,13 +21,13 @@ const Home = () => {
   const renderPatients = () => {
     return viewPatients.map((patient) => {
       return (
-        <div key={patient._id}>
-          <Link to={`/PatientProfile/${patient._id}`}>
-            <div>
-              {patient.name} {patient.lastName}
-            </div>
-          </Link>
-        </div>
+        <Link className="patient-card" key={patient._id} to={`/PatientProfile/${patient._id}`}>
+          <img className="patient-img" src={patient.imageUrl} alt="foto de perfil del usuario" />
+          <div className="patient-text">
+            <div>{patient.name}</div>
+            <div>{patient.lastName}</div>
+          </div>
+        </Link>
       );
     });
   };
@@ -37,9 +38,8 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1>PÁGINA Home</h1>
       {viewPatients.length !== 0 ? (
-        <div>{renderPatients()}</div>
+        <div className="container-one">{renderPatients()}</div>
       ) : (
         <div>
           <h3>no hay clientes registrados aun </h3>
