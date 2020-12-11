@@ -15,6 +15,8 @@ import EditDietitian from './pages/EditDietitian';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import EditPatient from './pages/EditPatient';
+import AllPatients from './pages/AllPatients';
+import DietTable from './pages/DietTable';
 
 function App() {
   // const [dietitian, setDietitian] = useState();
@@ -35,8 +37,10 @@ function App() {
           <PrivateRoute exact path="/PatientForm" component={PatientForm} />
           {/* <PrivateRoute exact component={PatientProfile} /> */}
           <PrivateRoute exact path="/PatientProfile/:id" component={PatientProfile} />
+          <PrivateRoute exact path="/AllPatients" component={AllPatients} />
           <PrivateRoute exact path="/EditDietitian/:id" component={EditDietitian} />
           <PrivateRoute exact path="/EditPatient/:id" component={EditPatient} />
+          <PrivateRoute exact path="/DietTable" component={DietTable} />
         </Switch>
       </div>
     </AuthProvider>

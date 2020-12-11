@@ -14,8 +14,20 @@ class Sidebar extends Component {
               <Link className="navBtns" to={'/'}>
                 <h4>Home</h4>
               </Link>
+              <Link className="navBtns" to="/AllPatients">
+                <h4>Lista de pacientes</h4>
+              </Link>
               <Link className="navBtns" to="/PatientForm">
                 <h4>Registrar paciente</h4>
+              </Link>
+              <Link className="navBtns" to="/">
+                <h4>Tabla de alimentos</h4>
+              </Link>
+              <Link className="navBtns" to="/">
+                <h4>Calendario</h4>
+              </Link>
+              <Link className="navBtns" to="/">
+                <h4>Mensajes</h4>
               </Link>
 
               {/* <Link className="navBtns" to="/patientForm">Registrar Paciente</Link> */}

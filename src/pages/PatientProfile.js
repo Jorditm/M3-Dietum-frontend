@@ -106,6 +106,22 @@ const PatientProfile = (props) => {
           </Link>
         </div> */}
       </div>
+      <div className="patient-container-seven">
+        <h2>Grafica de evolución</h2>
+        <p>AQUI AÑADO UNA GRAFICA DE EVOLUCION</p>
+      </div>
+
+      <div className="patient-container-eight">
+        <h2>Mensajes</h2>
+        <button type="button" className="btn btn-primary">
+          + Añadir comentario
+        </button>
+      </div>
+      <div className="patient-container-nine">
+        <Link to="/DietTable" className="btn btn-primary">
+          Editar Dieta
+        </Link>
+      </div>
     </div>
   );
 };
