@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
+// import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
 
@@ -20,7 +20,7 @@ class Sidebar extends Component {
               <Link className="navBtns" to="/PatientForm">
                 <h4>Registrar paciente</h4>
               </Link>
-              <Link className="navBtns" to="/">
+              <Link className="navBtns" to="/foodTable">
                 <h4>Tabla de alimentos</h4>
               </Link>
               <Link className="navBtns" to="/">

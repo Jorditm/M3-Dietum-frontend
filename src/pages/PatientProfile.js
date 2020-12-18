@@ -118,7 +118,7 @@ const PatientProfile = (props) => {
         </button>
       </div>
       <div className="patient-container-nine">
-        <Link to="/DietTable" className="btn btn-primary">
+        <Link to={`/${patientCard._id}/DietTable`} className="btn btn-primary">
           Editar Dieta
         </Link>
       </div>

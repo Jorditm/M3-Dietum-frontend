@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
 
@@ -10,7 +10,7 @@ const Navbar = ({ user, logout, isLoggedin }) => {
   const [dietitian, setDietitian] = useState(user);
   return (
     <div className="navbar-container">
-      {console.log('STATE', dietitian)}
+      {/* {console.log('STATE', dietitian)} */}
       {isLoggedin ? (
         <nav className="navbar navbar-expand-lg navbar-color">
           <div className="logo">

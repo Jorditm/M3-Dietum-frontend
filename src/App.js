@@ -17,11 +17,13 @@ import Navbar from './components/Navbar';
 import EditPatient from './pages/EditPatient';
 import AllPatients from './pages/AllPatients';
 import DietTable from './pages/DietTable';
+import FoodTable from './pages/FoodTable';
+import FoodForDiet from './pages/FoodForDiet';
 
 function App() {
   // const [dietitian, setDietitian] = useState();
   // const [patient, setPatient] = useState();
-  //crear state con el user para pasarlo a los hijos y esten "informados"
+  //crear state con el user para pasarlo a los hijos y esten pueda acceder a los datos
 
   return (
     <AuthProvider>
@@ -40,7 +42,9 @@ function App() {
           <PrivateRoute exact path="/AllPatients" component={AllPatients} />
           <PrivateRoute exact path="/EditDietitian/:id" component={EditDietitian} />
           <PrivateRoute exact path="/EditPatient/:id" component={EditPatient} />
-          <PrivateRoute exact path="/DietTable" component={DietTable} />
+          <PrivateRoute exact path="/foodTable" component={FoodTable} />
+          <PrivateRoute exact path="/:id/DietTable" component={DietTable} />
+          <PrivateRoute exact path="/:id/foodForDiet" component={FoodForDiet} />
         </Switch>
       </div>
     </AuthProvider>
