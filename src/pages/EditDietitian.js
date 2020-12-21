@@ -32,6 +32,7 @@ const EditDietitian = ({ user, history }) => {
   //   console.log(infoDietitian);
   return (
     <div className="container">
+      {console.log(user)}
       <h1>Pagina de edicion del usuario</h1>
       <form onSubmit={handleSubmitEdit}>
         <div className="form-group">

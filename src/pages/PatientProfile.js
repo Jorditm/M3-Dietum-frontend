@@ -121,6 +121,7 @@ const PatientProfile = (props) => {
         <Link to={`/${patientCard._id}/DietTable`} className="btn btn-primary">
           Editar Dieta
         </Link>
+        {console.log(patientCard.tableFood)}
       </div>
     </div>
   );

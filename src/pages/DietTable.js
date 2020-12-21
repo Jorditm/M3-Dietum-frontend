@@ -5,6 +5,7 @@ import { withAuth } from '../lib/AuthProvider';
 
 const DietTable = (props) => {
   const [tableFood, setTableFood] = useState([]);
+
   console.log(props);
   return (
     <div className="diet-container">

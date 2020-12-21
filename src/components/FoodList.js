@@ -35,6 +35,7 @@ const FoodList = () => {
           <div className="title-food">
             <h6>{oneFood.Descrip}</h6>
           </div>
+          {/* colocar un input para variar el peso elegido y calcule automaticamente todo lo demas */}
 
           <p>{oneFood.Energy_kcal} kcal/100gr</p>
           <p>{oneFood.Protein_g} Gr</p>
@@ -56,6 +57,17 @@ const FoodList = () => {
           aria-label="Search"
           onChange={filterFood}
         />
+        <div className="card-food">
+          <div className="title-food">{/* <h6>{oneFood.Descrip}</h6> */}</div>
+
+          <input type="text" />
+
+          <input type="number" />
+          <input type="number" />
+          <input type="number" />
+          <input type="number" />
+        </div>
+
         {selectFood.length > 0 ? renderListFood(selectFood) : renderListFood(food)}
       </form>
     </div>
