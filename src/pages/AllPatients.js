@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PatientList from '../components/PatientList';
+import { withAuth } from '../lib/AuthProvider';
 
 const AllPatients = () => (
   <div className="container container-one">
@@ -7,4 +8,4 @@ const AllPatients = () => (
   </div>
 );
 
-export default AllPatients;
+export default withAuth(AllPatients);

@@ -298,6 +298,7 @@ body {
 .card-food {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 5px 30px 5px 10px;
@@ -307,11 +308,92 @@ body {
   border: solid 2px #ffafda;
 }
 
-.title-food {
-  width: 350px;
+.head-food {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.macros-food {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 /* FINAL FOOD TABLE */
+
+/* DETAIL FOOD */
+
+.cardFood-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  grid-auto-rows: minmax(100px, auto);
+
+  margin-top: 50px;
+  margin-left: 250px;
+  margin-right: 20px;
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.cardFood-container-one {
+  grid-column: 1/3;
+  grid-row: 1;
+  margin-right: 20px;
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.cardFood-container-two {
+  grid-column: 1/3;
+  grid-row: 2;
+  margin-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  background-color: rgba(139, 139, 139, 0.5);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cardFood-container-three {
+  grid-column: 1/3;
+  grid-row: 3;
+  margin-right: 20px;
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  background-color: rgba(139, 139, 139, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.micro-elements {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.cardFood-container-four {
+  grid-column: 3/5;
+  grid-row: 1/4;
+  margin-right: 20px;
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border-radius: 20px;
+  background-color: rgba(139, 139, 139, 0.5);
+}
+/* FINAL DETAIL FOOD */
 
 /* SIDENAV */
 

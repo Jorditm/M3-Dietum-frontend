@@ -20,6 +20,8 @@ const PatientProfile = (props) => {
     try {
       const patient = await dietitianService.patientProfile(props.match.params.id);
       setPatientCard(patient);
+      // setTableFood(table);
+      // console.log(table);
       console.log(patient);
     } catch (error) {
       console.log(error);
@@ -118,10 +120,9 @@ const PatientProfile = (props) => {
         </button>
       </div>
       <div className="patient-container-nine">
-        <Link to={`/${patientCard._id}/DietTable`} className="btn btn-primary">
+        <Link to={`/${patientCard._id}/dietTable`} className="btn btn-primary">
           Editar Dieta
         </Link>
-        {console.log(patientCard.tableFood)}
       </div>
     </div>
   );

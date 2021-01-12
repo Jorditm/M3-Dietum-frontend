@@ -96,6 +96,7 @@ const PatientForm = ({ user, history }) => {
       const newPatient = await dietitianService.createPatient(patient);
       const dietitianUpdate = await dietitianService.add(newPatient._id);
       setDietitian(dietitianUpdate);
+      // setTable(addTabletoPatient);
       redirToProfile(newPatient._id);
     } catch (err) {
       console.log(err);
@@ -134,22 +135,6 @@ const PatientForm = ({ user, history }) => {
   const redirToProfile = (patientId) => {
     history.push(`/PatientProfile/${patientId}`);
   };
-
-  //INTRODUCIR FOTO DE PERFIL DEL PACIENTE
-  // const fileOnchange = async (event) => {
-  //   //Consigue el archivo del form
-  //   const file = event.target.files[0];
-  //   //para enviar el objeto y añadir la imagen
-  //   const uploadData = new FormData();
-  //   uploadData.append('photo', file);
-  //   try {
-  //     const sendFile = await cloudinaryService.fileUpload(uploadData);
-  //     setPatient({ ...patient, imageUrl: sendFile });
-  //     console.log(patient);
-  //   } catch (error) {
-  //     console.log('error', error);
-  //   }
-  // };
 
   return (
     <div className="container">

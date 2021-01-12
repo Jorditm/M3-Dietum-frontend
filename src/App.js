@@ -3,22 +3,23 @@ import './App.css';
 import { Switch } from 'react-router-dom';
 import AuthProvider from './lib/AuthProvider';
 
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Private from './pages/Private';
-import AnonRoute from './components/AnonRoute';
-import PrivateRoute from './components/PrivateRoute';
-import Home from './pages/Home';
-import PatientForm from './pages/PatientForm';
-import PatientProfile from './pages/PatientProfile';
-import EditDietitian from './pages/EditDietitian';
-import Sidebar from './components/Sidebar';
-import Navbar from './components/Navbar';
-import EditPatient from './pages/EditPatient';
-import AllPatients from './pages/AllPatients';
-import DietTable from './pages/DietTable';
-import FoodTable from './pages/FoodTable';
-import FoodForDiet from './pages/FoodForDiet';
+import Signup from './pages/Signup.js';
+import Login from './pages/Login.js';
+import Private from './pages/Private.js';
+import AnonRoute from './components/AnonRoute.js';
+import PrivateRoute from './components/PrivateRoute.js';
+import Home from './pages/Home.js';
+import PatientForm from './pages/PatientForm.js';
+import PatientProfile from './pages/PatientProfile.js';
+import EditDietitian from './pages/EditDietitian.js';
+import Sidebar from './components/Sidebar.js';
+import Navbar from './components/Navbar.js';
+import EditPatient from './pages/EditPatient.js';
+import AllPatients from './pages/AllPatients.js';
+import DietTable from './pages/DietTable.js';
+import FoodTable from './pages/FoodTable.js';
+import FoodForDiet from './pages/FoodForDiet.js';
+import FoodProfile from './pages/FoodProfile.js';
 
 function App() {
   // const [dietitian, setDietitian] = useState();
@@ -37,14 +38,14 @@ function App() {
           <PrivateRoute exact path="/private" component={Private} />
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/PatientForm" component={PatientForm} />
-          {/* <PrivateRoute exact component={PatientProfile} /> */}
           <PrivateRoute exact path="/PatientProfile/:id" component={PatientProfile} />
           <PrivateRoute exact path="/AllPatients" component={AllPatients} />
           <PrivateRoute exact path="/EditDietitian/:id" component={EditDietitian} />
           <PrivateRoute exact path="/EditPatient/:id" component={EditPatient} />
           <PrivateRoute exact path="/foodTable" component={FoodTable} />
-          <PrivateRoute exact path="/:id/DietTable" component={DietTable} />
-          <PrivateRoute exact path="/:id/foodForDiet" component={FoodForDiet} />
+          <PrivateRoute exact path="/:id/dietTable" component={DietTable} />
+          <PrivateRoute exact path="/:id/dietTable/:tableMenu/foods" component={FoodForDiet} />
+          <PrivateRoute exact path="/foodProfile/:id" component={FoodProfile} />
         </Switch>
       </div>
     </AuthProvider>
