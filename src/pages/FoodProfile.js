@@ -15,10 +15,6 @@ const FoodProfile = (props) => {
     }
   }, []);
 
-  // const handleEstimate = (event) => {
-  //   const { name, value } = event.target;
-  // };
-
   useEffect(() => {
     getInfoFood();
   }, [getInfoFood]);
@@ -29,7 +25,6 @@ const FoodProfile = (props) => {
         <div>
           <h1>{food.Descrip}</h1>
         </div>
-        <div>{/* <input type="number" onChange={handleEstimate} /> */}</div>
       </div>
       <div className="cardFood-container-two">
         <div>

@@ -3,18 +3,16 @@ import { Link } from 'react-router-dom';
 import { withAuth } from '../lib/AuthProvider';
 
 const DietTable = (props) => {
-  const handleShow = () => {
-    console.log('click');
-  };
+  //   const handleShow = () => {
+  //     console.log('click');
+  //   };
 
   return (
     <div className="diet-container">
       <div className="diet-container-one">
         <div className="title-diettable">
           <h2>Desayuno</h2>
-          <button type="button" onClick={handleShow}>
-            +
-          </button>
+          <Link to={`/${props.match.params.id}/dietTable/desayuno/foods`}>+</Link>
         </div>
         <div className="totals">
           <p>Energia: 0 kcal</p>

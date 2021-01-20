@@ -9,27 +9,6 @@ const FoodList = () => {
   const [foodKey, setFoodKey] = useState('');
   const [searchResult, setSearchResult] = useState();
   const [loading, setLoading] = useState(false);
-  // const getFoods = useCallback(async () => {
-  //   try {
-  //     const renderFoods = await foodService.allFoods();
-  //     setFoodList(renderFoods);
-  //     console.log(renderFoods);
-  //   } catch (error) {
-  //     console.log('error', error);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   getFoods();
-  // }, [getFoods]);
-
-  // const filterFood = (event) => {
-  //   const { value } = event.target;
-  //   const listFiltered = foodList.filter(
-  //     (elementList) => elementList.Descrip && elementList.Descrip.indexOf(value) !== -1
-  //   );
-  //   setSelectFood(listFiltered);
-  // };
 
   const renderListFood = () => {
     return (
@@ -60,8 +39,6 @@ const FoodList = () => {
       const findFood = await foodService.searchFood(foodKey);
       setSearchResult(findFood);
       // console.log(searchResult);
-      // llamarás al servicio pasándole el evebto onchange como parametro y te devolverá los alimentos
-      // setearás los alimentos al hook  que pertoque de alimento
     } catch (error) {
       console.log(error);
     }
@@ -88,8 +65,6 @@ const FoodList = () => {
         />
         <input type="submit" value="Buscar" />
         {renderListFood()}
-        {/* Crear función para renderizar la comida */}
-        {/* {selectFood.length > 0 && renderListFood(selectFood)} */}
       </form>
     </div>
   );

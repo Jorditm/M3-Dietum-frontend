@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import dietitianService from '../lib/dietitian-service';
-// import cloudinaryService from '../lib/cloudinary-service';
 import defaultImg from '../img/default-imguser.png';
 import axios from 'axios';
 

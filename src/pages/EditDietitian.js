@@ -68,18 +68,6 @@ const EditDietitian = ({ user, history }) => {
           />
         </div>
 
-        {/* <div className="form-group">
-          <label>new password:</label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            placeholder="new password"
-            value={infoDietitian.password}
-            onChange={handleChange}
-          />
-        </div> */}
-
         {mensaje ? (
           <div className="p-3 mb-2 bg-success text-white">Cambios guardados correctamente</div>
         ) : null}

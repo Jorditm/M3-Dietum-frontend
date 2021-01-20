@@ -2,7 +2,7 @@
 
 ## Description
 
-es una plataforma en la que dietista y cliente esta conectado, a traces de Diet Manager podras ver la tabla de comidas que el dietista prepara y actualizaciones a tiempo real de la dieta
+A platform where a dietitian can manage all the information of their patients, as many diets as measures and can add foods with all their information, schedule events and a history of information
 
 ## User Stories
 
@@ -30,18 +30,21 @@ es una plataforma en la que dietista y cliente esta conectado, a traces de Diet 
 
 ### Routes
 
-| Path                  | Component  | Permissions | Behavior                                                     |
-| --------------------- | ---------- | ----------- | ------------------------------------------------------------ |
-| `/signup`             | SignupPage | anon only   | Signup form, link to login, navigate to edit alumni profile after signup |
-| `/login`              | LoginPage  | anon only   | Login form, link to signup, navigate to home directory after login |
-| `/logout`             | n/a        | anon only   | Navigate to public homepage after logout, expire session     |
-| `/`                   | HomePage   | User only   | Home page                                                    |
-| `/EditDietitian`      |            | User only   |                                                              |
-| `/PatientForm`        |            | User only   |                                                              |
-| `/PatientProfile/:id` |            | User only   |                                                              |
-| `/EditPatient/:id`    |            | User only   |                                                              |
-| `/AllPatients`        |            | User only   |                                                              |
-| ``/DietTable          |            | User only   |                                                              |
+| Path                              | Component      | Permissions | Behavior                                                     |
+| --------------------------------- | -------------- | ----------- | ------------------------------------------------------------ |
+| `/signup`                         | SignupPage     | anon only   | Signup form, link to login, navigate to edit alumni profile after signup |
+| `/login`                          | LoginPage      | anon only   | Login form, link to signup, navigate to home directory after login |
+| `/logout`                         | n/a            | anon only   | Navigate to public homepage after logout, expire session     |
+| `/`                               | HomePage       | User only   | Home page                                                    |
+| `/EditDietitian`                  | EditDietitian  | User only   | Page to edit Dietitian data                                  |
+| `/PatientForm`                    | PatientForm    | User only   | Page to create a new patients                                |
+| `/PatientProfile/:id`             | PatientProfile | User only   | Page to view patient information                             |
+| `/EditPatient/:id`                | EditPatient    | User only   | Page to edit Patient data                                    |
+| `/AllPatients`                    | AllPatients    | User only   | Page to view a list of all patients of a dietitian           |
+| `/:id/dietTable`                  | DietTable      | User only   | Page to view a diet table of a patient and add foods to any menu |
+| `/:id/dietTable/:tableMenu/foods` | FoodForDiet    | User only   | A list with all foods to select and add to the table         |
+| `/foodProfile/:id`                | FoodProfile    | User only   | Page to view food information                                |
+| `/foodTable`                      | FoodTable      | User only   | A list with all foods to select and view the foodProfile page |
 
 ### Components
 
@@ -51,6 +54,9 @@ es una plataforma en la que dietista y cliente esta conectado, a traces de Diet 
 - DietTable
 - EditPatient
 - EditDietitian
+- FoodForDiet
+- FoodProfile
+- FoodTable
 - Home
 - Login
 - PatientForm
@@ -62,9 +68,8 @@ es una plataforma en la que dietista y cliente esta conectado, a traces de Diet 
 
 - Navbar
 - PatientList
+- FoodList
 - Sidebar
-
-
 
 ### Services
 
@@ -81,6 +86,11 @@ es una plataforma en la que dietista y cliente esta conectado, a traces de Diet 
   - deletePatient
   - editDietitian
   - editInfoPatient
+- Food
+  - allFoods
+  - getFoodDetails
+  - searchFood
+  - addFoodToTable
 
 ## Server/Backend
 
@@ -99,27 +109,17 @@ email: {
   required: true,
   unique: true,
   },
-// genre: { type: String, default: "", enum: ["Male", "Female"] },
 password: { type: String, minlength: 6, required: true },
-//tableDiet: { type: Array },
 patients: [{ type: Schema.Types.ObjectId, ref: "Patient" }],
-tableFood: [{ type: Schema.Types.ObjectId, ref: "TableFood" }],
 isDietitian: { type: Boolean, default: true },
 messages: [{ type: Schema.Types.ObjectId, ref: "Message" }],
 }
 ```
 
-Patient Model
+Food Model
 
 ```javascript
 {
-  name: { type: String, required: true },
-  weight: { type: String, required: true },
-  energy: { type: Number, required: true },
-  protein: { type: Number },
-  carbs: { type: Number },
-  fat: { type: Number },
-
   FoodGroup: { type: String, default: "" },
   Description: { type: String, default: "" },
   CommonName: { type: String, default: "" },
@@ -151,7 +151,7 @@ Patient Model
 }
 ```
 
-Food Model
+Patient Model
 
 ```javascript
 {
@@ -167,7 +167,6 @@ Food Model
     type: String,
     default: "",
   },
-  // password: { type: String, minlength: 6 },
   weight: { type: Number, default: "" },
   height: { type: Number, default: "" },
   age: { type: Number, default: "" },
@@ -177,35 +176,17 @@ Food Model
   smoke: { type: String, default: "" },
   foodAllergies: { type: String, default: "" },
 
-  //tableDiet: { type: Array },
-  dietitian: { type: Schema.Types.ObjectId, ref: "Dietitian" },
-  food: [{ type: Schema.Types.ObjectId, ref: "Food" }],
-  imageUrl: {
-    type: String,
-    default: "",
-  },
+  imageUrl: { type: String, default: "" },
   messages: [{ type: Schema.Types.ObjectId, ref: "Message" }],
-
-  desayuno: [{ type: Schema.Types.ObjectId, ref: "Food" }],
-  almuerzo: [{ type: Schema.Types.ObjectId, ref: "Food" }],
-  comida: [{ type: Schema.Types.ObjectId, ref: "Food" }],
-  merienda: [{ type: Schema.Types.ObjectId, ref: "Food" }],
-  cena: [{ type: Schema.Types.ObjectId, ref: "Food" }],
- 
-}
-```
-
-TableFood Model
-
-```javascript
-{
-  desayuno: [{ type: String }],
-  almuerzo: [{ type: String }],
-  comida: [{ type: String }],
-  merienda: [{ type: String }],
-  cena: [{ type: String }],
-  food: [{ type: Schema.Types.ObjectId, ref: "Food" }],
-  client: [{ type: Schema.Types.ObjectId, ref: "Patient" }],
+	diet: [
+    	{
+     	 desayuno: { type: Schema.Types.ObjectId, ref: "Food" },
+     	 almuerzo: [{ type: Schema.Types.ObjectId, ref: "Food" }],
+     	 comida: [{ type: Schema.Types.ObjectId, ref: "Food" }],
+     	 merienda: [{ type: Schema.Types.ObjectId, ref: "Food" }],
+     	 cena: [{ type: Schema.Types.ObjectId, ref: "Food" }],
+   	 },
+  	],
 }
 ```
 
@@ -237,5 +218,12 @@ Messages Model
 | POST        | `/dietitian/delete/:id`  | {id}                                                         | 200            |              | We can delete a patient from DB                              |
 | PUT         | `/editPatient/:id`       | {id}                                                         | 200            |              | We can edit all patient profile                              |
 | PUT         | `/editDietitian/:id`     | {id}                                                         | 200            |              | We can edit info about dietitian                             |
+| GET         | `/allFoods`              |                                                              | 200            | 500          | We obtain all the information from food JSON                 |
+| POST        | `/searchFood`            | {Descripción}                                                | 200            | 500          | Searchbar to find a foods by name                            |
+| POST        | `/createFood`            | {Descrip, CommonName, Energy_kcal, Protein_g, Fat_g,  Carb_g, Sugar_g,} | 200            | 500          | We can create a food with all information                    |
+| POST        | `/addFood`               |                                                              | 200            | 500          | To create a diet, we can add the food in the diet's patient  |
+| GET         | `/getFood/:id`           | {id}                                                         | 200            | 500          | View all info about food by id                               |
 
 ### Link
+
+[Old Deploy](https://dietum-m3.herokuapp.com/)

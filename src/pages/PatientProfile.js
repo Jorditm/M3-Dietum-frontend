@@ -35,7 +35,6 @@ const PatientProfile = (props) => {
       setDietitian(findPatient);
       setShow(false);
       props.history.push('/');
-      // redirToHome();
     } catch (error) {
       console.log(error);
     }
@@ -102,11 +101,6 @@ const PatientProfile = (props) => {
             Editar paciente
           </Link>
         </div>
-        {/* <div>
-          <Link className="btn btn-dark" to={'/'}>
-            Home
-          </Link>
-        </div> */}
       </div>
       <div className="patient-container-seven">
         <h2>Grafica de evolución</h2>
